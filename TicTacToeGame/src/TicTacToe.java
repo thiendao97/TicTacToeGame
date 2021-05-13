@@ -1,5 +1,5 @@
 /**
- /This program creates a game called Tic-Tac-Toe
+ This program creates a game called Tic-Tac-Toe
 */
 
 import java.util.Scanner;
@@ -23,27 +23,50 @@ public class TicTacToe{
 		System.out.println("\nEnter coordinates for your move following the X and O prompts");
 		String playerInput = in.nextLine(); // instead of in.next().... write a method called getUserInput(). Make it so the next instruction doesn't run until the input is correct.
 		
-		placePiece(board, playerInput, "playerOne"); //board gets updated after every play
-		
-		placePiece(board, playerInput, "playerTwo");
+		board = placePiece(board, playerInput, switchToPlayer1);  //board gets updated after every play
 		}
 	}
-			
+	
+	
+	
+	
+	
+	
+// Checks user validation by making sure user only inputs a positive int and nothing else
+	public static String getUserInput() { // name of method for user validation
+		Scanner sc = new Scanner(System.in); // implements user input
+		String userInput;
+			while (!sc.hasNext("[A1]")) {
+				System.out.println("That's not a correct input");
+				sc.nextLine();
+			}
+			userInput = sc.nextLine();
+			return userInput;
+	}
+		
+
+	
+	
+	
+		//TODO: Figure out comparison logic here. If the unput is not A1-C3. Print incorrect and keep looping this. If it is correct stop looping this.
+		
+		
+	
 //method for inputing X or O into board		
-	public static char[][] placePiece(char[][] board, String playerInput, Char turn) {
+	public static char[][] placePiece(char[][] board, String playerInput, boolean iswitchToPlayer1) {
 		boolean keepLooping = true;
-		boolean playing = true;
 		char symbol = ' ';
-		if (hasPlayerWon(char[][] board, char symbol)) {
-			playing = false;
-			System.out.println("Game Over! PLayer " + turn + " wins!");
-		}
-		printBoard(board);
-		if (turn == 'X') {
-			turn = 'O';
+		boolean switchToPlayer1 = true;
+
+		if(switchToPlayer1) {
+			symbol = 'X';
+			switchToPlayer1 = false;
+			System.out.println("The symbol was: " + symbol);
 		}
 		else {
-			turn = 'X';
+			symbol = 'O';
+			switchToPlayer1 = true;
+			System.out.println("The symbol was: " + symbol);
 		}
 		System.out.println("The input was: " + playerInput);
 		switch(playerInput) {
@@ -185,15 +208,15 @@ public class TicTacToe{
 	
 // checks win conditions
 	public static boolean hasPlayerWon(char[][] board, char symbol) {	
-		if ((board[1][2] == symbol && board[1][4] == symbol && board[1][6] == symbol) || //horizontal wins
+		if ((board[1][2] == symbol && board[1][4] == symbol && board[1][6] == symbol) ||
 			(board[3][2] == symbol && board[3][4] == symbol && board[3][6] == symbol) ||
 			(board[5][2] == symbol && board[5][4] == symbol && board[5][6] == symbol) ||
 			
-			(board[1][2] == symbol && board[3][2] == symbol && board[5][2] == symbol) || //vertical wins
+			(board[1][2] == symbol && board[3][2] == symbol && board[5][2] == symbol) ||
 			(board[1][4] == symbol && board[3][4] == symbol && board[5][4] == symbol) ||
 			(board[1][6] == symbol && board[3][6] == symbol && board[5][6] == symbol) ||
 			
-			(board[1][2] == symbol && board[3][4] == symbol && board[5][6] == symbol) || //diagonal wins
+			(board[1][2] == symbol && board[3][4] == symbol && board[5][6] == symbol) ||
 			(board[1][6] == symbol && board[3][4] == symbol && board[5][2] == symbol)) {
 			return true;
 		}
