@@ -1,19 +1,94 @@
+/**
+ This program creates a game called Tic-Tac-Toe
+*/
+
 import java.util.Scanner;
 
 public class TicTacToe{
 	
 	public static void main(String[] args) {
-		System.out.println("Welcome to tic-tac-toe");
-		System.out.println("Enter coordinates for your move following the x and O prompts.");
+		Scanner in = new Scanner(System.in);
+		System.out.println("Welcome to Tic-Tac-Toe\n");
+		char board[][] = {{' ', ' ', '1', ' ', '2', ' ', '3',},
+				{'A', ' ', ' ', '|', ' ', '|', ' ',},
+				{' ', ' ', '-', '-', '-', '-', '-',},
+				{'B', ' ', ' ', '|', ' ', '|', ' ',},
+				{' ', ' ', '-', '-', '-', '-', '-',},
+				{'C', ' ', ' ', '|', ' ', '|', ' ',}};
+		printBoard(board);
+		while(true) {
+		System.out.println("\nEnter coordinates for your move following the X and O prompts");
+		String playerInput = in.next();
+		placePiece(board, playerInput, "Player"); 
+		}
 	}
 	
-	private char[][] board;
-	private char player; // 'X' or 'O'
+		
+//method for inputing X or O into board		
+	public static void placePiece(char[][] board, String playerInput, String user) {
+		char symbol = ' ';
+		boolean switchToPlayer2 = false;
+		
+		if(switchToPlayer2) {
+			symbol = 'X';
+			switchToPlayer2 = true;
+			System.out.println("The symbol was: " + symbol);
+		}
+		else {
+			symbol = 'O';
+			switchToPlayer2 = false;
+			System.out.println("The symbol was: " + symbol);
+		}
+		System.out.println("The input was: " + playerInput);
+		System.out.println("The symbol was: " + symbol);
+		switch(playerInput) {
+		case "A1":
+			board[1][2] = symbol;
+			System.out.println("The symbol was: " + symbol);
+			break;
+		case "A2":
+			board[1][4] = symbol;
+			break;
+		case "A3":
+			board[1][6] = symbol;
+			break;
+		case "B1":
+			board[3][2] = symbol;
+			break;
+		case "B2":
+			board[3][4] = symbol;
+			break;
+		case "B3":
+			board[3][6] = symbol;
+			break;
+		case "C1":
+			board[5][2] = symbol;
+			break;
+		case "C2":
+			board[5][4] = symbol;
+			break;
+		case "C3":
+			board[5][6] = symbol;
+			break;
+		default:
+	    	System.out.println("Invalid input please try again.\n");
+	    	break;
+		}
+		printBoard(board);
+	}
+
+
+//method for printing out board
+	public static void printBoard(char board[][]) {
+		for(char[] row : board) {
+			for(char c : row) {
+				System.out.print(c);
+			}
+			System.out.println();
+		}
+	}
+
 	
-	/* 
-	 * Instantiate board to be a 3 by 3 char array of spaces.
-	 * Set player to be 'X'.
-	 */
 	public TicTacToe() {
 		/*
 		* Step 1: create an empty board, with an initial value
@@ -65,7 +140,7 @@ public class TicTacToe{
 		 */
 		 return true;   // replace with your own return 
 	}
-	public char getPlayer() {
+/*	public char getPlayer() {
 		return player;
 	}
 	public void print() {
@@ -79,6 +154,7 @@ public class TicTacToe{
 		System.out.println("\tC "+board[2][0]+"|"+board[2][1]+"|"+board[2][2]);
 		System.out.println();
 	}
+*/
 	
 	/* 
 	 * Step 6: Main Method for Final Step - Delete your main method 
@@ -87,36 +163,7 @@ public class TicTacToe{
 	 * appropriate moves, and prints who won or if it was a stalemate. 
 	*/ 
 	/*
-	public static void main(String[] args) {
-		
-		Scanner in = new Scanner(System.in);
-		TicTacToe game = new TicTacToe();
-		System.out.println("Welcome to tic-tac-toe");
-		System.out.println("Enter coordinates for your move following the X and O prompts");
-		
-		while(!game.stalemate()) {
-			//Print the game
-			
-			
-			//Prompt player for their move
-			
-			
-			//Loop while the method play does not return true when given their move.
-			//Body of loop should ask for a different move
-
-						
-			//If the game is won, call break; 
-			
-						
-			//Switch the turn
-			
-		}
-		game.print();
-		if(game.won()){
-			System.out.println("Player "+game.getPlayer()+" Wins!!!!");
-		} else {
-			System.out.println("Stalemate");
-		}
+	
 	} */
 	
 }
