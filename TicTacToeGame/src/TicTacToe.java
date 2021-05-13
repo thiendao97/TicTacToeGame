@@ -21,63 +21,161 @@ public class TicTacToe{
 		printBoard(board);
 		while(true) {
 		System.out.println("\nEnter coordinates for your move following the X and O prompts");
-		String playerInput = in.next();
-		switchToPlayer1 = placePiece(board, playerInput, switchToPlayer1); 
+		String playerInput = in.next(); // instead of in.next().... write a method called getUserInput(). Make it so the next instruction doesn't run until the input is correct.
+		
+		board = placePiece(board, playerInput, switchToPlayer1);  //board gets updated after every play
 		}
 	}
 	
+	
+// Checks user validation by making sure user only inputs a positive int and nothing else
+	public static String getUserInput() { // name of method for user validation
+		Scanner sc = new Scanner(System.in); // implements user input
+		String userInput;
+		
+		userInput = sc.nextLine();
+		//TODO: Figure out comparison logic here. If the unput is not A1-C3. Print incorrect and keep looping this. If it is correct stop looping this.
+		
+		
+		return userInput; // only return this if it is correct.
+	}
 		
 //method for inputing X or O into board		
-	public static boolean placePiece(char[][] board, String playerInput, boolean switchToPlayer1) {
+	public static char[][] placePiece(char[][] board, String playerInput, boolean switchToPlayer1) {
+		boolean keepLooping = true;
 		char symbol = ' ';
-		
+
 		if(switchToPlayer1) {
 			symbol = 'X';
 			switchToPlayer1 = false;
-			System.out.println("The symbol was: " + symbol);
 		}
 		else {
 			symbol = 'O';
 			switchToPlayer1 = true;
-			System.out.println("The symbol was: " + symbol);
 		}
-		System.out.println("The input was: " + playerInput);
-		System.out.println("The symbol was: " + symbol);
 		switch(playerInput) {
 		case "A1":
-			board[1][2] = symbol;
-			//System.out.println("The symbol was: " + symbol);
+			while(keepLooping) {
+				if (board[1][2] == ' ') {
+					board[1][2] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "A2":
-			board[1][4] = symbol;
+			while(keepLooping) {
+				if (board[1][4] == ' ') {
+					board[1][4] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "A3":
-			board[1][6] = symbol;
+			while(keepLooping) {
+				if (board[1][6] == ' ') {
+					board[1][6] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "B1":
-			board[3][2] = symbol;
+			while(keepLooping) {
+				if (board[3][2] == ' ') {
+					board[3][2] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "B2":
-			board[3][4] = symbol;
+			while(keepLooping) {
+				if (board[3][4] == ' ') {
+					board[3][4] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "B3":
-			board[3][6] = symbol;
+			while(keepLooping) {
+				if (board[3][6] == ' ') {
+					board[3][6] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "C1":
-			board[5][2] = symbol;
+			while(keepLooping) {
+				if (board[5][2] == ' ') {
+					board[5][2] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "C2":
-			board[5][4] = symbol;
+			while(keepLooping) {
+				if (board[5][4] == ' ') {
+					board[5][4] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		case "C3":
-			board[5][6] = symbol;
+			while(keepLooping) {
+				if (board[5][6] == ' ') {
+					board[5][6] = symbol;
+					keepLooping = false;
+				}
+			else {
+				System.out.println("This squares is occupied. Try again.\n");
+				keepLooping = true;
+				break;
+			}
+		}
 			break;
 		default:
-	    	System.out.println("Invalid input please try again.\n");
 	    	break;
 		}
 		printBoard(board);
-		return switchToPlayer1;
+		return board;
 	}
 
 
