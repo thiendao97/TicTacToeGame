@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class TicTacToe{
 	
 	public static void main(String[] args) {
+		
+		boolean switchToPlayer1 = true;
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Welcome to Tic-Tac-Toe\n");
 		char board[][] = {{' ', ' ', '1', ' ', '2', ' ', '3',},
@@ -19,24 +22,23 @@ public class TicTacToe{
 		while(true) {
 		System.out.println("\nEnter coordinates for your move following the X and O prompts");
 		String playerInput = in.next();
-		placePiece(board, playerInput, "Player"); 
+		switchToPlayer1 = placePiece(board, playerInput, switchToPlayer1); 
 		}
 	}
 	
 		
 //method for inputing X or O into board		
-	public static void placePiece(char[][] board, String playerInput, String user) {
+	public static boolean placePiece(char[][] board, String playerInput, boolean switchToPlayer1) {
 		char symbol = ' ';
-		boolean switchToPlayer2 = false;
 		
-		if(switchToPlayer2) {
+		if(switchToPlayer1) {
 			symbol = 'X';
-			switchToPlayer2 = true;
+			switchToPlayer1 = false;
 			System.out.println("The symbol was: " + symbol);
 		}
 		else {
 			symbol = 'O';
-			switchToPlayer2 = false;
+			switchToPlayer1 = true;
 			System.out.println("The symbol was: " + symbol);
 		}
 		System.out.println("The input was: " + playerInput);
@@ -44,7 +46,7 @@ public class TicTacToe{
 		switch(playerInput) {
 		case "A1":
 			board[1][2] = symbol;
-			System.out.println("The symbol was: " + symbol);
+			//System.out.println("The symbol was: " + symbol);
 			break;
 		case "A2":
 			board[1][4] = symbol;
@@ -75,6 +77,7 @@ public class TicTacToe{
 	    	break;
 		}
 		printBoard(board);
+		return switchToPlayer1;
 	}
 
 
