@@ -26,30 +26,6 @@ public class TicTacToe{
 		board = placePiece(board, playerInput, switchToPlayer1);  //board gets updated after every play
 		}
 	}
-	
-	
-	
-	
-	
-	
-// Checks user validation by making sure user only inputs a positive int and nothing else
-	public static String getUserInput() { // name of method for user validation
-		Scanner sc = new Scanner(System.in); // implements user input
-		String userInput;
-			while (!sc.hasNext("[A1]")) {
-				System.out.println("That's not a correct input");
-				sc.nextLine();
-			}
-			userInput = sc.nextLine();
-			return userInput;
-	}
-		
-
-	
-	
-	
-		//TODO: Figure out comparison logic here. If the unput is not A1-C3. Print incorrect and keep looping this. If it is correct stop looping this.
-		
 		
 	
 //method for inputing X or O into board		
@@ -58,15 +34,15 @@ public class TicTacToe{
 		char symbol = ' ';
 		boolean switchToPlayer1 = true;
 
-		if(switchToPlayer1) {
+		if(switchToPlayer1) { //keeps looping to this in stead of player 2
 			symbol = 'X';
-			switchToPlayer1 = false;
 			System.out.println("The symbol was: " + symbol);
+			switchToPlayer1 = false;
 		}
 		else {
 			symbol = 'O';
-			switchToPlayer1 = true;
 			System.out.println("The symbol was: " + symbol);
+			switchToPlayer1 = true;
 		}
 		System.out.println("The input was: " + playerInput);
 		switch(playerInput) {
@@ -205,6 +181,31 @@ public class TicTacToe{
 		}
 	}
 
+
+// checks for winner
+	public static boolean isGameFinished(char[][] board) {
+		if (hasPlayerWon(board, 'X')) {
+			printBoard(board);
+			System.out.println("X Player wins!");
+			return true;
+		}
+		if (hasPlayerWon(board, 'O')) {
+			printBoard(board);
+			System.out.println("O Player wins!");
+			return true;
+		}
+		for (int i= 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == ' ') {
+					return false;
+				}
+			}
+		}
+		printBoard(board);
+		System.out.println("The game ended in a tie!");
+		return true;
+	}
+
 	
 // checks win conditions
 	public static boolean hasPlayerWon(char[][] board, char symbol) {	
@@ -220,7 +221,6 @@ public class TicTacToe{
 			(board[1][6] == symbol && board[3][4] == symbol && board[5][2] == symbol)) {
 			return true;
 		}
-		System.out.println("Stalemate, no one wins");
 		return false;
 	}	 
-	}
+}
