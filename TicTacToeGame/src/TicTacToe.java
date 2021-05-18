@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class TicTacToe{
 	
 	public static void main(String[] args) {
-		
-		boolean switchToPlayer1 = true;
+		PlayerTurn turn = new PlayerTurn();
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Welcome to Tic-Tac-Toe\n");
@@ -23,26 +22,24 @@ public class TicTacToe{
 		System.out.println("\nEnter coordinates for your move following the X and O prompts");
 		String playerInput = in.nextLine(); // instead of in.next().... write a method called getUserInput(). Make it so the next instruction doesn't run until the input is correct.
 		
-		board = placePiece(board, playerInput, switchToPlayer1);  //board gets updated after every play
+		board = placePiece(board, playerInput, turn);  //board gets updated after every play
 		}
 	}
 		
-	
 //method for inputing X or O into board		
-	public static char[][] placePiece(char[][] board, String playerInput, boolean iswitchToPlayer1) {
+	public static char[][] placePiece(char[][] board, String playerInput, PlayerTurn switchToPlayer1) {
 		boolean keepLooping = true;
 		char symbol = ' ';
-		boolean switchToPlayer1 = true;
 
-		if(switchToPlayer1) { //keeps looping to this in stead of player 2
+		if(switchToPlayer1.getTurn()) { //keeps looping to this in stead of player 2
 			symbol = 'X';
 			System.out.println("The symbol was: " + symbol);
-			switchToPlayer1 = false;
+			switchToPlayer1.switchTurn();
 		}
 		else {
 			symbol = 'O';
 			System.out.println("The symbol was: " + symbol);
-			switchToPlayer1 = true;
+			switchToPlayer1.switchTurn();
 		}
 		System.out.println("The input was: " + playerInput);
 		switch(playerInput) {
